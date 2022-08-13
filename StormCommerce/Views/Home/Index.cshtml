@@ -1,60 +1,48 @@
-﻿
+﻿@using StormCommerce.Models;
+@model IEnumerable<Product>
+
 @{
     ViewBag.Title = "Ana Sayfa";
 }
 
 
+
 <div class="jumbotron">
-    <h1 class="display-4">Hello, world!</h1>
-    <p class="lead">
-        This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-        to
-        featured content or information.
-    </p>
-    <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </p>
-</div>
-<div class="card-deck">
-    <div class="card">
-        <img class="card-img-top" src="holder.js/100px180/" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.
-            </p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="holder.js/100px180/" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-                This card has supporting text below as a natural lead-in to additional content.
-            </p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-    <div class="card">
-        <img class="card-img-top" src="holder.js/100px180/" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content. This card has even longer content than the first to show that equal height
-                action.
-            </p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
+    <div class="container">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">
+            This is a simple hero unit, a simple jumbotron-style component for calling extra attention
+            to
+            featured content or information.
+        </p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p>
     </div>
 </div>
+<div class="container pb-5">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mt-3">
+                    <img class="card-img-top" src="holder.js/100px180/" alt="@item.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/Home/ProductDetails/@item.Id">@item.Name</a>
+                        </h5>
+                        <p class="card-text">@item.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">@item.Price</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+

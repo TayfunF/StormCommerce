@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StormCommerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,20 +9,22 @@ namespace StormCommerce.Controllers
 {
     public class HomeController : Controller
     {
+        AppDbContext _context = new AppDbContext();
+
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return View(_context.Products.Where(x => x.IsHome && x.IsApproved).ToList());
         }
 
-        public ActionResult ProductDetails()
+        public ActionResult ProductDetails(int id)
         {
-            return View();
+            return View(_context.Products.Where(x=>x.Id == id).FirstOrDefault());
         }
 
         public ActionResult ProductList()
         {
-            return View();
+            return View(_context.Products.Where(x => x.IsApproved).ToList());
         }
     }
 }
