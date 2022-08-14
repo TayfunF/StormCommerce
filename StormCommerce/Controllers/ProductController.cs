@@ -10,6 +10,7 @@ using StormCommerce.Models;
 
 namespace StormCommerce.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private AppDbContext _context = new AppDbContext();

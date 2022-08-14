@@ -1,0 +1,26 @@
+﻿
+<ul class="navbar-nav my-2 my-lg-0">
+
+    @if (Request.IsAuthenticated)
+    {
+        //Kullanıcı Adını ve Logut linkini çıkar
+        <li class="nav-item active">
+            <a class="nav-link">@User.Identity.Name</a>
+        </li>
+        <li class="nav-item active">
+            <a class="btn btn-default" href="/Account/Logout"><i class="fa-solid fa-person-running"></i><i class="fa-solid fa-arrow-right-from-bracket"></i> Çıkış Yap</a>
+        </li>
+    }
+    else
+    {
+        //Login ve Register linkini çıkar
+        <li class="nav-item active">
+            <a class="btn btn-default" href="/Account/Login"><i class="fa-solid fa-right-to-bracket"></i> Giriş Yap</a>
+        </li>
+        <li class="nav-item active">
+            <a class="btn btn-default" href="/Account/Register"><i class="fa fa-user-plus"></i>  Üye Ol</a>
+        </li>
+    }
+
+
+</ul>

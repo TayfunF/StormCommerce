@@ -70,7 +70,7 @@ namespace StormCommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Login Login)
+        public ActionResult Login(Login Login, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -82,10 +82,15 @@ namespace StormCommerce.Controllers
                     //ApplicationCokkie oluştur ve sisteme bırak
 
                     var AuthManager = HttpContext.GetOwinContext().Authentication;
-                    var IdentityClaims = UserManager.CreateIdentity(User, "ApplicationCokkie");
+                    var IdentityClaims = UserManager.CreateIdentity(User, "ApplicationCookie");
                     var AuthProperties = new AuthenticationProperties();
                     AuthProperties.IsPersistent = Login.RememberMe;
                     AuthManager.SignIn(AuthProperties, IdentityClaims);
+
+                    if (!string.IsNullOrEmpty(ReturnUrl))
+                    {
+                       return Redirect(ReturnUrl);
+                    }
 
                     return RedirectToAction("Index", "Home");
                 }
