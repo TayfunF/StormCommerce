@@ -1,41 +1,27 @@
-﻿@using StormCommerce.Models;
-@model IEnumerable<Product>
-
-@{
+﻿@{
     ViewBag.Title = "Ürün Listesi";
 }
 
-
-<div class="row">
-    <div class="col-md-3">
-        <ul class="list-group">
-            <li class="list-group-item active">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-    </div>
-    <div class="col-md-9">
-        <div class="row">
-
-            @foreach (var item in Model)
+<div class="container pb-5">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Action("GetCategoryList", "Home")
+        </div>
+        <div class="col-md-9">
+            @if (ViewBag.ProductCount == 0)
             {
-                <div class="col-md-4">
-                    <div class="card mt-3">
-                        <img class="card-img-top" src="holder.js/100px180/" alt="@item.Name">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="/Home/ProductDetails/@item.Id">@item.Name</a>
-                            </h5>
-                            <p class="card-text">@item.Description</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">@item.Price</small>
-                        </div>
-                    </div>
+                <div class="alert alert-warning">
+                    <i class="fa-solid fa-circle-info"></i> Bu kategoriye ait ürün bulunamadı
                 </div>
             }
+            else
+            {
+                <div class="alert alert-warning">
+                    <i class="fa-regular fa-circle-check"></i> <strong>@ViewBag.ProductCount adet</strong> ürün bulundu
+                </div>
+            }
+
+            @Html.Partial("_ProductList")
         </div>
     </div>
 </div>

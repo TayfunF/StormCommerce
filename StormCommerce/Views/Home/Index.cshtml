@@ -1,10 +1,7 @@
-﻿@using StormCommerce.Models;
-@model IEnumerable<Product>
-
+﻿
 @{
     ViewBag.Title = "Ana Sayfa";
 }
-
 
 
 <div class="jumbotron">
@@ -23,26 +20,6 @@
     </div>
 </div>
 <div class="container pb-5">
-    <div class="row">
-
-        @foreach (var item in Model)
-        {
-            <div class="col-md-4">
-                <div class="card mt-3">
-                    <img class="card-img-top" src="holder.js/100px180/" alt="@item.Name">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="/Home/ProductDetails/@item.Id">@item.Name</a>
-                        </h5>
-                        <p class="card-text">@item.Description</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">@item.Price</small>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-
+    @Html.Partial("_ProductList")
 </div>
 

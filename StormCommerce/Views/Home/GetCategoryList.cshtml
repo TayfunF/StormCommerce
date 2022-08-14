@@ -1,0 +1,45 @@
+﻿@using StormCommerce.Models
+@model IEnumerable<Category>
+
+@{
+    var SelectedCategory = Url.RequestContext.RouteData.Values["id"];
+}
+
+<ul class="list-group">
+    <a href="/Home/ProductList" class="list-group-item">
+        <i class="fa-solid fa-angles-right"></i>
+        Tüm Kategoriler
+    </a>
+    @foreach (var item in Model)
+    {
+        if (SelectedCategory != null)
+        {
+            if (item.Id == int.Parse(SelectedCategory.ToString()))
+            {
+                //Seçilen Kategori ile Route id si birbirine eşit
+                <a href="/Home/ProductList/@item.Id" class="list-group-item active">
+                    <i class="fa-solid fa-angles-right"></i>
+                    @item.Name
+                </a>
+            }
+            else
+            {
+                <a href="/Home/ProductList/@item.Id" class="list-group-item">
+                    <i class="fa-solid fa-angles-right"></i>
+                    @item.Name
+                </a>
+            }
+        }
+        else
+        {
+            <a href="/Home/ProductList/@item.Id" class="list-group-item">
+                <i class="fa-solid fa-angles-right"></i>
+                @item.Name
+            </a>
+        }
+
+    }
+
+</ul>
+
+

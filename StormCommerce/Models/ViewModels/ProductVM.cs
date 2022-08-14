@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace StormCommerce.Models
+namespace StormCommerce.Models.ViewModels
 {
-    public class Product
+    public class ProductVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,10 +13,6 @@ namespace StormCommerce.Models
         public double Price { get; set; }
         public int Stock { get; set; }
         public string Image { get; set; }
-        public bool IsHome { get; set; }
-        public bool IsApproved { get; set; }
         public int CategoryId { get; set; }
-
-        public Category Category { get; set; }
     }
 }

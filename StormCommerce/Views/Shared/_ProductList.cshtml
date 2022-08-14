@@ -1,0 +1,31 @@
+﻿@using StormCommerce.Models.ViewModels;
+@model IEnumerable<ProductVM>
+
+<div class="container pb-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card mt-3">
+                    <img class="card-img-top" src="~/Upload/@item.Image" alt="@item.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/Home/ProductDetails/@item.Id">@item.Name</a>
+                        </h5>
+                        <p class="card-text pt-5 description">@item.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted product-price">
+                            @item.Price
+                            <i class="fa-solid fa-turkish-lira-sign"></i>
+                        </small>
+                        <a href="/Home/ProductDetails/@item.Id" class="btn btn-primary btn-sm float-right">
+                            Ürünü İncele
+                            <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
