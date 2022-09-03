@@ -166,13 +166,19 @@
     <Compile Include="Migrations\202208141749163_Init4.designer.cs">
       <DependentUpon>202208141749163_Init4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209031746572_NewColumnAdded.cs" />
+    <Compile Include="Migrations\202209031746572_NewColumnAdded.designer.cs">
+      <DependentUpon>202209031746572_NewColumnAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\ShippingDetails.cs" />
     <Compile Include="Models\ViewModels\ProductVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -200,6 +206,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\_SummaryPartial.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\Completed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -223,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208141749163_Init4.resx">
       <DependentUpon>202208141749163_Init4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209031746572_NewColumnAdded.resx">
+      <DependentUpon>202209031746572_NewColumnAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -2,7 +2,9 @@
 @model Cart
 
 <ul class="navbar-nav my-2 my-lg-0">
-    <li class="nav-item active" style="color:green;">
-        <i class="fa fa-cart-plus"></i> (@Model.CartLines.Count)
+    <li class="nav-item active" style="color:white;">
+        <a class="nav-link" href="/Cart">
+            <i class="fa fa-cart-plus"></i> (@Model.CartLines.Count)
+        </a>
     </li>
 </ul>

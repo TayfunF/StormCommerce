@@ -1,6 +1,7 @@
 ﻿using StormCommerce.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -58,6 +59,66 @@ namespace StormCommerce.Controllers
         public PartialViewResult _SummaryPartial()
         {
             return PartialView(GetCart());
+        }
+
+        [HttpGet]
+        public ActionResult Checkout()
+        {
+            return View(new ShippingDetails());
+        }
+
+        [HttpPost]
+        public ActionResult Checkout(ShippingDetails shippingDetails)
+        {
+            var Cart = GetCart();
+
+            if (Cart.CartLines.Count == 0)
+            {
+                ModelState.AddModelError("UrunYokError", "Sepetinizde ürün bulunmamaktadır");
+            }
+
+            if (ModelState.IsValid)
+            {
+                //Siparişi veritabanına kaydet
+                //Kartı sıfırla
+                SaveOrder(Cart, shippingDetails);
+
+                Cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
+        }
+
+        private void SaveOrder(Cart cart, ShippingDetails shippingDetails)
+        {
+            var order = new Order();
+
+            order.OrderNumber = "A" + (new Random()).Next(111111, 999999).ToString();
+            order.Total = cart.TotalProduct();
+            order.OrderDate = DateTime.Now;
+            order.Username = shippingDetails.Username;
+            order.AddressTitle = shippingDetails.AddressTitle;
+            order.Address = shippingDetails.Address;
+            order.City = shippingDetails.City;
+            order.Distinct = shippingDetails.Distinct;
+            order.PostalCode = shippingDetails.PostalCode;
+            order.OrderLines = new List<OrderLine>();
+
+            foreach (var item in cart.CartLines)
+            {
+                var orderline = new OrderLine();
+                orderline.Quantity = item.Quantity;
+                orderline.Price = item.Quantity * item.Product.Price;
+                orderline.ProductId = item.Product.Id;
+
+                order.OrderLines.Add(orderline);
+            }
+
+            _context.Orders.Add(order);
+            _context.SaveChanges();
         }
     }
 }
