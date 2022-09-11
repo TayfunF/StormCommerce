@@ -170,16 +170,23 @@
     <Compile Include="Migrations\202209031746572_NewColumnAdded.designer.cs">
       <DependentUpon>202209031746572_NewColumnAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209111737527_OrderStateEnumAdded.cs" />
+    <Compile Include="Migrations\202209111737527_OrderStateEnumAdded.designer.cs">
+      <DependentUpon>202209111737527_OrderStateEnumAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Enums\OrderState.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\ShippingDetails.cs" />
+    <Compile Include="Models\ViewModels\OrderDetailsVM.cs" />
     <Compile Include="Models\ViewModels\ProductVM.cs" />
+    <Compile Include="Models\ViewModels\UserOrderVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +215,8 @@
     <Content Include="Views\Cart\_SummaryPartial.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Cart\Completed.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -234,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209031746572_NewColumnAdded.resx">
       <DependentUpon>202209031746572_NewColumnAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209111737527_OrderStateEnumAdded.resx">
+      <DependentUpon>202209111737527_OrderStateEnumAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

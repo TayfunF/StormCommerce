@@ -1,4 +1,5 @@
 ﻿using StormCommerce.Models;
+using StormCommerce.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration.Configuration;
@@ -99,7 +100,9 @@ namespace StormCommerce.Controllers
             order.OrderNumber = "A" + (new Random()).Next(111111, 999999).ToString();
             order.Total = cart.TotalProduct();
             order.OrderDate = DateTime.Now;
-            order.Username = shippingDetails.Username;
+            order.OrderState = OrderState.Bekliyor;
+            order.Username = User.Identity.Name;
+            //order.Username = shippingDetails.Username;
             order.AddressTitle = shippingDetails.AddressTitle;
             order.Address = shippingDetails.Address;
             order.City = shippingDetails.City;

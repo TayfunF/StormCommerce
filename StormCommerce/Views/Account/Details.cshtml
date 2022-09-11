@@ -1,0 +1,85 @@
+﻿@model StormCommerce.Models.ViewModels.OrderDetailsVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sipariş Detay Bilgileri</h2>
+            <hr />
+
+            <dl class="row">
+                <dt class="col-md-3">Sipariş Durumu</dt>
+                <dd class="col-md-9">
+                    @if (Model.OrderState == StormCommerce.Models.Enums.OrderState.Bekliyor)
+                    {
+                        <span class="badge-danger">@Model.OrderState</span>
+                    }
+                    else
+                    {
+                        <span class="badge-success">@Model.OrderState</span>
+                    }
+                </dd>
+
+                <dt class="col-md-3">Sipariş Id</dt>
+                <dd class="col-md-9">@Model.OrderId</dd>
+
+                <dt class="col-md-3">Sipariş No</dt>
+                <dd class="col-md-9">@Model.OrderNumber</dd>
+
+                <dt class="col-md-3">Toplam</dt>
+                <dd class="col-md-9">@Model.Total</dd>
+
+                <dt class="col-md-3">Sipariş Tarihi</dt>
+                <dd class="col-md-9">@Model.OrderDate.ToShortDateString()</dd>
+
+                <dt class="col-md-3">Adres</dt>
+                <dd class="col-md-9">
+                    @Model.AddressTitle
+                    <hr />
+                    @Model.Address
+                    <br />
+                    @Model.City - @Model.Distinct - @Model.PostalCode
+
+                    @*<dl class="row">
+                            <dt class="col-md-4">Adres Başlığı</dt>
+                            <dd class="col-md-8">asdasd</dd>
+                        </dl>*@
+                </dd>
+
+                <dt class="col-md-3">Ürünler</dt>
+                <dd class="col-md-9">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ürün Resmi</th>
+                                <th style="width : 40%;">Ürün Adı</th>
+                                <th>Miktar</th>
+                                <th>Fiyat</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderLines)
+                            {
+                                <tr>
+                                    <td><img src="~/Upload/@item.ProductImage" width="70" /></td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Price ₺</td>
+                                    <td><a href="/Home/ProductDetails/@item.ProductId" class="btn btn-primary btn-sm" target="_blank">Ürün Detayları</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </dd>
+
+            </dl>
+
+        </div>
+    </div>
+</div>
+

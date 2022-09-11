@@ -1,15 +1,14 @@
 ﻿using StormCommerce.Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace StormCommerce.Models
+namespace StormCommerce.Models.ViewModels
 {
-    public class Order
+    public class OrderDetailsVM
     {
-        public int Id { get; set; }
+        public int OrderId { get; set; }
         public string OrderNumber { get; set; }
         public double Total { get; set; }
         public DateTime OrderDate { get; set; }
@@ -25,19 +24,15 @@ namespace StormCommerce.Models
 
 
         //Nav Prop
-        public virtual List<OrderLine> OrderLines { get; set; }
+        public virtual List<OrderLineVM> OrderLines { get; set; }
     }
 
-    public class OrderLine
+    public class OrderLineVM
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string ProductImage { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
-
-        //Nav Prop
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
     }
 }
